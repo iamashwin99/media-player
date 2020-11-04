@@ -1,53 +1,38 @@
 {
-  "manifest_version": 2,
-  "version": "0.1.4",
-  "name": "Media Player",
-  "description": "A simple yet powerful media player built on top of video.js project",
-  "background": {
-    "persistent": false,
-    "scripts": [
-      "background.js"
-    ]
-  },
-  "permissions": [
-    "tabs",
-    "storage",
-    "*://*/*",
-    "contextMenus",
-    "notifications"
-  ],
-  "browser_action": {
-    "default_icon": {
+   "background": {
+      "persistent": false,
+      "scripts": [ "background.js" ]
+   },
+   "browser_action": {
+
+   },
+   "commands": {
+      "next-track": {
+         "description": "Next track"
+      },
+      "previous-track": {
+         "description": "Previous track"
+      },
+      "toggle-play": {
+         "description": "Toggle play/pause"
+      }
+   },
+   "description": "A powerful media player built on top of the video.js project with speed control",
+   "homepage_url": "https://add0n.com/the-media-player.html",
+   "icons": {
+      "128": "data/icons/128.png",
       "16": "data/icons/16.png",
+      "256": "data/icons/256.png",
       "32": "data/icons/32.png",
       "48": "data/icons/48.png",
+      "512": "data/icons/512.png",
       "64": "data/icons/64.png"
-    }
-  },
-  "icons": {
-    "16": "data/icons/16.png",
-    "32": "data/icons/32.png",
-    "48": "data/icons/48.png",
-    "64": "data/icons/64.png",
-    "128": "data/icons/128.png",
-    "256": "data/icons/256.png"
-  },
-  "commands": {
-    "previous-track": {
-      "description": "Previous track"
-    },
-    "next-track": {
-      "description": "Next track"
-    },
-    "toggle-play": {
-      "description": "Toggle play/pause"
-    }
-  },
-  "homepage_url": "http://add0n.com/the-media-player.html",
-  "applications": {
-    "gecko": {
-      "id": "{9051e1b5-f28b-48d2-af1c-b1cbd8a3d0e0}",
-      "strict_min_version": "52.0"
-    }
-  }
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjT3CuXKarNl8zkTa6dPdxx6TxTEEQRUGJo397N7qP/W3xIgg0Ig8VlNUMB2omsAhWSVKPGN+yecvGtIYQ+zGHOclpYcmcXgQjgYZBpvuQAao9FtvnTIf4dOksDut/LgWESamsBH//Q+pmqCZYDzG8DvsIxkw0m/7HDEpEJx+X+wDIazZdSGUUMMfirDF1m9chaNtJbpekjx7U2vsptAl8gf/IB2qOysEYzROm3FHKApb07hpBgZuKF7iTlvogEM6jBd6RKpnOrbfOD6ePnykgskwFvDDLEUGwQ3IkM8kHY0Cugc/ilkoaBLe9JCSKw28gDoDf1+6+0Jwhw4Ua7DttwIDAQAB",
+   "manifest_version": 2,
+   "name": "MediaPlayer - Video and Audio Player",
+   "offline_enabled": true,
+   "permissions": [ "storage", "contextMenus", "notifications" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "0.1.7"
 }

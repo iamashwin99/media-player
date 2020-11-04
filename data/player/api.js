@@ -1,7 +1,7 @@
 /* globals videojs */
 'use strict';
 
-var api = {
+const api = {
   arguments: {},
   config: {
     name: 'Media Player',
@@ -15,6 +15,7 @@ var api = {
     playbackRates: [0.5, 1, 1.5, 2, 5]
   }
 };
+window.api = api;
 if (window.location.search) {
   window.location.search.substr(1).split('&').forEach(s => {
     const tmp = s.split('=');
@@ -44,7 +45,7 @@ api.player = videojs('video-player', {
     },
     smartInactivePlugin: {
       inactivityTimeout: api.config.inactivityTimeout * 1000
-    },
+    }
   }
 }, () => {
   document.title = api.config.name;
@@ -86,22 +87,22 @@ api.append = list => {
 };
 api.local = files => {
   const playlist = files
-  .filter(f => f.type && (f.type.startsWith('video/') || f.type.startsWith('audio/')))
-  .map(file => {
-    // looking for subtitles
-    const base = file.name.replace(/\.[^.]*$/, '');
-    const caption = files.filter(f => f !== file && f.name.startsWith(base)).shift();
-    return {
-      name: file.name.replace(/\.[^.]+$/, ''),
-      duration: '--',
-      type: file.type,
-      caption,
-      sources: [{
-        src: URL.createObjectURL(file),
+    .filter(f => f.type && (f.type.startsWith('video/') || f.type.startsWith('audio/')))
+    .map(file => {
+      // looking for subtitles
+      const base = file.name.replace(/\.[^.]*$/, '');
+      const caption = files.filter(f => f !== file && f.name.startsWith(base)).shift();
+      return {
+        name: file.name.replace(/\.[^.]+$/, ''),
+        duration: '--',
         type: file.type,
-      }]
-    };
-  });
+        caption,
+        sources: [{
+          src: URL.createObjectURL(file),
+          type: file.type
+        }]
+      };
+    });
   api.append(playlist);
 };
 api.remote = urls => {
@@ -116,8 +117,7 @@ api.remote = urls => {
   }).map(src => ({
     sources: [{
       src,
-      type: 'video/mp4',
-      name: 'unKnown'
+      name: src.split('/').pop()
     }]
   }));
   api.append(playlist);
